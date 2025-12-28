@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltGuard Diagnostic System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">
+                VOLTGUARD
+                <span class="status-indicator"></span>
+            </h1>
+            <p class="subtitle">System Diagnostic Interface v2.4</p>
+        </header>
+
+        <main>
+            <!-- Health Score Section -->
+            <section class="health-score-section">
+                <div class="score-ring" id="scoreRing">
+                    <div class="score-content">
+                        <div class="score-value" id="scoreValue">--</div>
+                        <div class="score-label">Health Score</div>
+                    </div>
+                    <div class="score-update" id="scoreUpdate">
+                        --
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-label">System State</div>
+                    <div class="card-value">
+                        <span class="state-badge" id="stateBadge">INITIALIZING</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-label">Confidence Level</div>
+                    <div class="card-value" id="confidenceValue">--%</div>
+                </div>
+            </div>
+
+            <!-- Diagnostic Section -->
+            <div class="diagnostic-section">
+                <div class="diagnostic-card" id="diagnosisCard">
+                    <div class="diagnostic-label">
+                        <span class="icon">⚡</span>
+                        Diagnosis
+                    </div>
+                    <div class="diagnostic-text" id="diagnosisText">
+                        System initializing...
+                    </div>
+                </div>
+
+                <div class="diagnostic-card" id="recommendationCard">
+                    <div class="diagnostic-label">
+                        <span class="icon">🔧</span>
+                        Recommendation
+                    </div>
+                    <div class="diagnostic-text" id="recommendationText">
+                        Awaiting diagnostic data...
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>VoltGuard™ Embedded Diagnostic System | Real-time Monitoring Active</p>
+        </footer>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

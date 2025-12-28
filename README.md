@@ -28,3 +28,8 @@ VoltGuard-PHD bridges that gap by combining signal analysis + diagnostic logic d
 
 ## Current Stage
 Software scaffold is being built first — real hardware integration comes next.
+
+
+
+## cloning the content my teammate is adding
+git pull origin main

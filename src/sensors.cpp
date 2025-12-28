@@ -1,25 +1,38 @@
 #include "sensors.h"
 #include <Arduino.h>
 
-// Initialize sensors (placeholder for now)
+#define ANALOG_PIN_VOLTAGE 34
+#define ADC_MAX 4095.0
+#define ADC_REF 3.3
+
+// ⚠️ TEMP calibration factor (you will tune this)
+#define ZMPT_CALIBRATION 100.0  
+
 void initSensors() {
-    Serial.println("Sensors initialized (fake + real placeholders)");
+    pinMode(ANALOG_PIN_VOLTAGE, INPUT);
+    analogReadResolution(12);   // ESP32 default, but be explicit
+    Serial.println("Sensors initialized (ZMPT101B active)");
 }
 
-// Read sensors (fake values for demo purposes)
 SensorData readSensors() {
     SensorData data;
 
-    // Simulate voltage & current reading
-    data.voltage = 230.0 + random(-5, 5) * 0.1; // 229.5V - 230.5V
-    data.current = 1.5 + random(-5, 5) * 0.01;  // 1.45A - 1.55A
+    int raw = analogRead(34);
+    Serial.print("ADC RAW: ");
+    Serial.println(raw);
 
-    // Simulate other sensors
-    data.temperature = 25.0 + random(-50, 50) * 0.1;   // 20°C - 30°C
-    data.vibration = random(0, 100) * 0.01;             // 0 - 1 g
-    data.humidity = 40.0 + random(-50, 50) * 0.1;       // 35% - 45%
-    data.magneticFlux = 0.5 + random(-50, 50) * 0.01;   // 0.0 - 1.0 arbitrary units
+    // ZMPT output is centered around mid-point
+    const int ADC_MID = 2048;   // ~1.65V
+    int signal = raw - ADC_MID;
+
+    // Convert ADC to voltage (ADC → volts)
+    float voltage_adc = (signal / 4095.0) * 3.3;
+
+    // Calibration factor (START WITH 100, adjust later)
+    float voltage_real = abs(voltage_adc) * 100.0;
+
+
+    data.voltage = voltage_real;
 
     return data;
 }
-
